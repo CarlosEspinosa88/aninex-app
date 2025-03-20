@@ -1,9 +1,20 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 
 const API_URL = 'https://graphql.anilist.co';
 
-const client = new ApolloClient({
+const link = new HttpLink({
   uri: API_URL,
+  fetchOptions: {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      }
+  },
+});
+
+const client = new ApolloClient({
+  link,
   cache: new InMemoryCache(),
 });
 
