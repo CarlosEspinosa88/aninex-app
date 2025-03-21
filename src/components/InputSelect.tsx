@@ -1,3 +1,5 @@
+import Caret from '@/svg/Caret';
+
 type InputSelectProps = {
   id: string;
   name?: string;
@@ -40,6 +42,9 @@ export default function InputSelect({
             </option>
           ))}
         </select>
+        <div className="absolute top-0 bottom-0 right-[10px] flex items-center px-2 pointer-events-none">
+          <Caret />
+        </div>
       </div>
     </div>
   );
