@@ -19,7 +19,6 @@ export default function Home() {
     setYear,
     setStatus,
     setSeason,
-    handleSearch,
     handleLoadMore,
   } = useGetAnimes();
 
@@ -46,7 +45,6 @@ export default function Home() {
           loading={loading}
           animes={ANIMES_DATA}
           pageInfo={PAGE_INFO}
-          handleSearch={handleSearch}
           handleLoadMore={handleLoadMore}
         />
       </main>
