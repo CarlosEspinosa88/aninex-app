@@ -32,3 +32,7 @@ export type Anime = {
     thumbnail: string;
   }
 }
+
+export interface FavoriteState {
+  animeIds: number[];
+}
