@@ -3,7 +3,7 @@
 import Providers from '@/components/Providers';
 import Navbar from '@/components/Navbar'
 import { geistSans, geistMono, montserrat } from '@/fonts'
-import "./globals.css";
+import "@/styles/globals.css";
 
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

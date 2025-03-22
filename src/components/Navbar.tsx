@@ -10,7 +10,7 @@ export default function Navbar() {
     <header className="bg-[#0D7377] p-4">
       <div className="flex justify-between items-center max-w-[1238px] mx-auto">
         <div>
-          <h1 className="text-[#D4D4D4] font-bold text-[2.2rem] font-(family-name:--font-montserrat) ">Aninex</h1>
+          <h1 className="text-[#D4D4D4] font-bold text-[2.2rem] font-(family-name:--font-montserrat)">Aninex</h1>
         </div>
         <nav>
           <ul className="flex justify-between items-center gap-5">
