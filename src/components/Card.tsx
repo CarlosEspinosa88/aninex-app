@@ -1,20 +1,26 @@
 import Image from "next/image";
 import Heart from '@/svg/Heart';
+import { Anime } from "@/interfaces";
+
 
 type CardProps = {
+  anime: Anime;
   imageUrl: string;
   title: string;
   isFavorite?: boolean;
-  onToggleFavorite?: () => void;
   className?: string;
+  onToggleFavorite?: () => void;
+  handleCardClick?: (anime: Anime) => void;
 };
 
 export default function Card({
+  anime,
   imageUrl,
   title,
   isFavorite = false,
   className = '',
   onToggleFavorite,
+  handleCardClick,
 }: CardProps) {
   return (
     <div
@@ -30,14 +36,15 @@ export default function Card({
         alt={`${title}-image`}
         width={200}
         height={286}
-        className="w-full h-[286px] rounded-xl object-cover shadow-md hover:shadow-lg transition-shadow shadow-[#00DECC]/80"
+        className="w-full h-[286px] rounded-xl object-cover shadow-md hover:shadow-lg transition-shadow shadow-[#00DECC]/80 cursor-pointer"
+        onClick={() => handleCardClick?.(anime)}
       />
-      <p className="mt-2 text-[#8F8F8F] text-base font-semibold">
+      <p className="mt-2 text-[#8F8F8F] text-base font-semibold w-[200px] mb-3 leading-[1.2] overflow-hidden line-clamp-2">
         {title}
       </p>
       <button
         onClick={onToggleFavorite}
-        className="absolute bottom-2 right-2"
+        className="absolute bottom-[30px] right-2"
         aria-label="toggle favorite"
       >
         {isFavorite ? (

@@ -1,15 +1,10 @@
 type ButtonVariant = 'primary' | 'secondary' | 'danger';
 
 type ButtonProps = {
-  /** Texto o contenido a mostrar dentro del botón */
   label: React.ReactNode;
-  /** Evento click */
   onClick?: () => void;
-  /** Variantes para cambiar estilo */
   variant?: ButtonVariant;
-  /** Clases extras en caso de necesitar personalizar más */
   className?: string;
-  /** Si el botón está deshabilitado */
   disabled?: boolean;
 };
 
@@ -20,7 +15,6 @@ export default function Button({
   className = '',
   disabled = false,
 }: ButtonProps) {
-  // Clases base para todos los botones
   const baseClasses = `
     inline-flex items-center justify-center
     px-4 py-2
@@ -30,7 +24,6 @@ export default function Button({
     transition-colors
   `;
 
-  // Clases que dependerán de la variante
   const variantClasses: Record<ButtonVariant, string> = {
     primary: `
       bg-[#0D7377] text-white
@@ -49,12 +42,10 @@ export default function Button({
     `,
   };
 
-  // Si está deshabilitado (o no)
   const disabledClasses = disabled
     ? 'opacity-60 cursor-not-allowed'
     : 'cursor-pointer';
 
-  // Combinar todas las clases
   const finalClass = [
     baseClasses,
     variantClasses[variant],

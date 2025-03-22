@@ -38,12 +38,29 @@ export const GET_ANIMES = gql`
         genres
         episodes
         description
+        averageScore
+        episodes
+        endDate {
+          day
+          month
+          year
+        }
+        startDate {
+          year
+          month
+          day
+        }
         title {          
           english
           native
         }
         coverImage {
           large
+        }
+        trailer {
+          id
+          site
+          thumbnail
         }
       }
     }
