@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Heart from '@/svg/Heart';
-import { Anime } from "@/interfaces";
+import type { Anime } from "@/interfaces";
 
 
 type CardProps = {

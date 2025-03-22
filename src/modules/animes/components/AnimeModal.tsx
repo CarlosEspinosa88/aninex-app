@@ -1,5 +1,5 @@
 import Modal from '@/components/Modal'
-import { Anime } from '@/interfaces';
+import type { Anime } from '@/interfaces';
 import Image from 'next/image';
 import React from 'react'
 

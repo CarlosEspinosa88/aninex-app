@@ -1,3 +1,6 @@
+import { ApolloError } from "@apollo/client";
+import { store } from '@/store/store';
+
 export type Anime = {
   id: string;
   siteUrl: string;
@@ -34,5 +37,23 @@ export type Anime = {
 }
 
 export interface FavoriteState {
-  animeIds: number[];
+  animeIds: string[];
 }
+
+export type AnimesListProps = {
+  animes: Anime[] | [];
+  loading: boolean;
+  error: ApolloError | undefined;
+  pageInfo: {
+    total: number;
+    currentPage: number;
+    lastPage: number;
+    hasNextPage: boolean;
+    perPage: number;
+  };
+  handleSearch: () => void;
+  handleLoadMore: () => void;
+}
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
