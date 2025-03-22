@@ -5,8 +5,8 @@ import type { Anime } from "@/interfaces";
 
 type CardProps = {
   anime: Anime;
-  imageUrl: string;
   title: string;
+  imageUrl: string;
   isFavorite?: boolean;
   className?: string;
   onToggleFavorite?: () => void;
@@ -36,23 +36,27 @@ export default function Card({
         alt={`${title}-image`}
         width={200}
         height={286}
-        className="w-full h-[286px] rounded-xl object-cover shadow-md hover:shadow-lg transition-shadow shadow-[#00DECC]/80 cursor-pointer"
+        className="w-full h-[286px] rounded-xl object-cover 
+          shadow-md hover:shadow-lg transition-shadow 
+          shadow-[#00DECC]/80 cursor-pointer"
         onClick={() => handleCardClick?.(anime)}
       />
-      <p className="mt-2 text-[#8F8F8F] text-base font-semibold w-[200px] mb-3 leading-[1.2] overflow-hidden line-clamp-2">
+      <p className="mt-2 text-[#8F8F8F] text-base font-semibold w-[200px] mb-3 leading-[1.2] overflow-hidden line-clamp-1">
         {title}
       </p>
-      <button
-        onClick={onToggleFavorite}
-        className="absolute bottom-[30px] right-2"
-        aria-label="toggle favorite"
-      >
-        {isFavorite ? (
-          <Heart width={18} height={18} stroke="red" fill="red"  />
-        ) : (
-          <Heart width={18} height={18} stroke="gray"  />
-        )}
-      </button>
+      <div className="relative">
+        <button
+          onClick={onToggleFavorite}
+          className="absolute bottom-[10px] right-2"
+          aria-label="toggle favorite"
+        >
+          {isFavorite ? (
+            <Heart width={18} height={18} stroke="red" fill="red"  />
+          ) : (
+            <Heart width={18} height={18} stroke="gray"  />
+          )}
+        </button>
+      </div>
     </div>
   );
 }

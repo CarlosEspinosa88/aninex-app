@@ -11,9 +11,9 @@ export default function Providers({ children }: { children: ReactNode }) {
   useEffect(() => {
     const unsubscribe = store.subscribe(() => {
       const state = store.getState();
-      const favorites = state.favorites.animeIds;
+      const favoritesData = state.favorites.animes;
       
-      localStorage.setItem('favorites', JSON.stringify(favorites));
+      localStorage.setItem('favoriteAnimes', JSON.stringify(favoritesData));
     });
     return () => unsubscribe();
   }, []);

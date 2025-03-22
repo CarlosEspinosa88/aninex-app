@@ -1,9 +1,7 @@
 import Button from '@/components/Button';
 import Card from '@/components/Card';
-import { useAppDispatch, useAppSelector } from "@/hooks/useAppDispatch";
-import { toggleFavorite } from "@/store/actions"
 import type { Anime } from '@/interfaces';
-import { selectFavorites } from "@/store/selectFavorites";
+import { useGetFavorites } from '@/hooks/useGetFavorites';
 
 type AnimeCardProps = {
   animes: Anime[] | [];
@@ -28,12 +26,7 @@ export default function AnimeCard({
   handleLoadMore,
   handleCardClick
 }: AnimeCardProps) {
-  const favorites = useAppSelector(selectFavorites);
-  const dispatch = useAppDispatch();
-  
-  const handleFavorite = (animeId: string) => {
-    dispatch(toggleFavorite(animeId));
-  }
+  const { favoriteAnimes, handleToggleFavorite } = useGetFavorites()
 
   return (
     <>
@@ -41,7 +34,7 @@ export default function AnimeCard({
         <>
           <div className="flex flex-row flex-wrap gap-[35px] pt-10 pb-10">
             {animes?.map((anime) => {
-              const isFavorite = favorites.includes(anime.id);
+              const isFavorite = favoriteAnimes.some((someAnime) => someAnime.id === anime.id);
               return (
                 <Card
                   key={anime.id}
@@ -49,19 +42,18 @@ export default function AnimeCard({
                   isFavorite={isFavorite}
                   title={anime.title.english || anime.title.native}
                   imageUrl={anime.coverImage.large}
-                  onToggleFavorite={() => handleFavorite(anime.id)}
+                  onToggleFavorite={() => handleToggleFavorite({anime, isFavorite})}
                   handleCardClick={() => handleCardClick(anime)}
                 />
               )
-            }
-            )}
+            })}
           </div>
           <button onClick={handleSearch}>
             Search
           </button>
 
           {pageInfo?.hasNextPage && (
-            <div style={{ marginTop: '1rem' }}>
+            <div className='mt-[1rem]'>
               <Button 
                 disabled={loading} 
                 onClick={handleLoadMore} 

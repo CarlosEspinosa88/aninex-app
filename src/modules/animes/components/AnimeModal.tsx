@@ -1,7 +1,6 @@
+import Image from 'next/image';
 import Modal from '@/components/Modal'
 import type { Anime } from '@/interfaces';
-import Image from 'next/image';
-import React from 'react'
 
 type AnimeModalProps = {
   selectedAnime: Anime | null;

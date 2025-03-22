@@ -38,6 +38,7 @@ export type Anime = {
 
 export interface FavoriteState {
   animeIds: string[];
+  animes: Anime[];
 }
 
 export type AnimesListProps = {

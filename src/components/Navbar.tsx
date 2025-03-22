@@ -14,8 +14,16 @@ export default function Navbar() {
         </div>
         <nav>
           <ul className="flex justify-between items-center gap-5">
-            <li><Link className={`text-[#D4D4D4] text-[1.1rem] ${pathname === '/' && "font-bold border-b-4 border-b-[#FF567F] transition ease-in-out delay-150 duration-300"}`} href="/">Home</Link></li>
-            <li><Link className={`text-[#D4D4D4] text-[1.1rem] ${pathname === '/favorites' && "font-bold border-b-4 border-b-[#FF567F]"}`} href="/favorites">Favorites</Link></li>
+            <li className="font-(family-name:--font-montserrat)">
+              <Link className={`text-[#D4D4D4] text-[1.1rem] ${pathname === '/' && "font-bold border-b-4 border-b-[#FF567F] transition ease-in-out delay-150 duration-300"}`} href="/">
+                Home
+              </Link>
+            </li>
+            <li className="font-(family-name:--font-montserrat)">
+              <Link className={`text-[#D4D4D4] text-[1.1rem] ${pathname === '/favorites' && "font-bold border-b-4 border-b-[#FF567F]"}`} href="/favorites">
+                Favorites
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>

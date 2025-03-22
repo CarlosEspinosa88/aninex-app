@@ -1,15 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { initialState } from '@/store/initialState';
-
+import { Anime } from '@/interfaces';
 
 export const favoritesSlice = createSlice({
   name: 'favorites',
   initialState,
   reducers: {
     toggleFavorite(state, action: PayloadAction<string>) {
+<<<<<<< HEAD
       console.log('toggleFavorite', action.payload);
       console.log('ID', state.animeIds);
 
+=======
+>>>>>>> b3bf566 (Add favorites view)
       const animeId = action.payload;
       const isFav = state.animeIds.includes(animeId);
 
@@ -18,6 +21,23 @@ export const favoritesSlice = createSlice({
       } else {
         state.animeIds.push(animeId);
       }
+    },
+    addFavoriteAnimes(state, action: PayloadAction<Anime>) {
+      const newAnime = action.payload;
+      const exists = state.animes.find((anime) => anime.id === newAnime.id);
+      
+      if (!exists) {
+        state.animes.push(newAnime);
+        
+        if (!state.animeIds.includes(newAnime.id)) {
+          state.animeIds.push(newAnime.id);
+        }
+      }
+    },
+    removeFavoriteAnime(state, action: PayloadAction<Anime>) {
+      const animeId = action.payload.id;
+      state.animes = state.animes.filter((anime) => anime.id !== animeId);
+      state.animeIds = state.animeIds.filter((id) => id !== animeId);
     },
   },
 });

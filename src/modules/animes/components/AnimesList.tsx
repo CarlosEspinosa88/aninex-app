@@ -1,7 +1,7 @@
-import { useState } from "react";
 import AnimeCard from "./AnimeCard";
 import AnimeModal from "./AnimeModal";
-import type { Anime, AnimesListProps } from "@/interfaces";
+import { useModal } from "@/hooks/useModal";
+import type { AnimesListProps } from "@/interfaces";
 
 export default function AnimesList({ 
   animes,
@@ -11,15 +11,12 @@ export default function AnimesList({
   handleSearch,
   handleLoadMore,
 }: AnimesListProps) {
-  const [selectedAnime, setSelectedAnime] = useState<Anime | null>(null);
 
-  const handleCardClick = (anime: Anime ) => {
-    setSelectedAnime(anime);
-  };
-
-  const closeModal = () => {
-    setSelectedAnime(null);
-  };
+  const {
+    selectedAnime, 
+    handleCardClick, 
+    handleCloseModal 
+  } = useModal();
 
   return (
     <div>
@@ -35,7 +32,7 @@ export default function AnimesList({
           />
           <AnimeModal
             selectedAnime={selectedAnime}
-            closeModal={closeModal}
+            closeModal={handleCloseModal}
           />
         </>
         )}
