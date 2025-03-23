@@ -1,16 +1,20 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ANIMES } from '@/lib/queries';
 import { ANIME_TYPE, IS_ADULT, PER_PAGE } from '@/constants';
+import { useDebounce } from './useDebounce';
 
 export const useGetAnimes = () => {
   const [search, setSearch] = useState<string>('');
+
   const [genre, setGenre] = useState<string>('');
   const [year, setYear] = useState<string>('');
   const [status, setStatus] = useState<string>('');
   const [season, setSeason] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1);
+
+  const debouncedSearch = useDebounce({ value: search, delay: 500 });
 
   const {
     data,
@@ -24,21 +28,6 @@ export const useGetAnimes = () => {
       page: currentPage,
     }
   });
-
-  const handleSearch = () => {
-    setCurrentPage(1);
-    refetch({
-      page: 1,
-      perPage: PER_PAGE,
-      isAdult: IS_ADULT,
-      type: ANIME_TYPE,
-      search: search || undefined,
-      genre_in: genre ? [genre] : undefined,
-      seasonYear: year ? parseInt(year) : undefined,
-      status: status || undefined,
-      season: season || undefined,
-    });
-  };
 
   const handlePreviousPage = async () => {
     if (data?.Page?.pageInfo?.hasPreviousPage) {
@@ -111,7 +100,29 @@ export const useGetAnimes = () => {
       type: ANIME_TYPE,
     });
   }
-    
+
+  useEffect(() => {
+    setCurrentPage(1);
+    refetch({
+      page: 1,
+      perPage: PER_PAGE,
+      isAdult: IS_ADULT,
+      type: ANIME_TYPE,
+      search: debouncedSearch || undefined,
+      genre_in: genre ? [genre] : undefined,
+      seasonYear: year ? parseInt(year) : undefined,
+      status: status || undefined,
+      season: season || undefined,
+    });
+
+  }, [  
+    debouncedSearch,
+    genre,
+    year,
+    status,
+    season,
+    refetch
+  ]);
 
   return {
     data,
@@ -127,7 +138,6 @@ export const useGetAnimes = () => {
     setYear,
     setStatus,
     setSeason,
-    handleSearch,
     handleLoadMore,
     handlePreviousPage,
     handleReset,

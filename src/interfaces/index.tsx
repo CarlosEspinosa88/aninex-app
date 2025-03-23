@@ -52,7 +52,6 @@ export type AnimesListProps = {
     hasNextPage: boolean;
     perPage: number;
   };
-  handleSearch: () => void;
   handleLoadMore: () => void;
 }
 

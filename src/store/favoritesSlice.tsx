@@ -7,12 +7,6 @@ export const favoritesSlice = createSlice({
   initialState,
   reducers: {
     toggleFavorite(state, action: PayloadAction<string>) {
-<<<<<<< HEAD
-      console.log('toggleFavorite', action.payload);
-      console.log('ID', state.animeIds);
-
-=======
->>>>>>> b3bf566 (Add favorites view)
       const animeId = action.payload;
       const isFav = state.animeIds.includes(animeId);
 

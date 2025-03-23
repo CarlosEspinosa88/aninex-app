@@ -13,7 +13,6 @@ type AnimeCardProps = {
     hasNextPage:  boolean
     perPage:  number
   };
-  handleSearch: () => void;
   handleLoadMore: () => void;
   handleCardClick: (anime: Anime) => void;
 }
@@ -22,7 +21,6 @@ export default function AnimeCard({
   animes,
   loading,
   pageInfo,
-  handleSearch,
   handleLoadMore,
   handleCardClick
 }: AnimeCardProps) {
@@ -48,10 +46,6 @@ export default function AnimeCard({
               )
             })}
           </div>
-          <button onClick={handleSearch}>
-            Search
-          </button>
-
           {pageInfo?.hasNextPage && (
             <div className='mt-[1rem]'>
               <Button 

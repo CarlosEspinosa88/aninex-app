@@ -8,7 +8,6 @@ export default function AnimesList({
   loading,
   error,
   pageInfo,
-  handleSearch,
   handleLoadMore,
 }: AnimesListProps) {
 
@@ -26,7 +25,6 @@ export default function AnimesList({
             animes={animes}
             loading={loading}
             pageInfo={pageInfo}
-            handleSearch={handleSearch}
             handleLoadMore={handleLoadMore}
             handleCardClick={handleCardClick}
           />
