@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { GET_ANIMES } from '@/lib/queries';
 import { ANIME_TYPE, IS_ADULT, PER_PAGE } from '@/constants';
 
-export function useGetAnimes() {
+export const useGetAnimes = () => {
   const [search, setSearch] = useState<string>('');
   const [genre, setGenre] = useState<string>('');
   const [year, setYear] = useState<string>('');
