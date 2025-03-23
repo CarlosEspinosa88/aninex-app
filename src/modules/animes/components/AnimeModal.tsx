@@ -97,7 +97,7 @@ export default function AnimeModal({
                   </div>
                 ): (
                   <div className="w-full h-50 bg-[#f2f2f2] flex items-center justify-center rounded-b-2xl">
-                    <p className="text-sm font-semibold text-[#282828]">No video available</p>
+                    <p className="text-sm font-semibold text-[#282828] font-(family-name:--font-montserrat)">No video available</p>
                   </div>
                 )}
               </div>

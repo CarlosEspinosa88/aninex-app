@@ -22,6 +22,7 @@ export default function Button({
     font-semibold
     focus:outline-none focus:ring-2 focus:ring-offset-2
     transition-colors
+    font-(family-name:--font-montserrat)
   `;
 
   const variantClasses: Record<ButtonVariant, string> = {
