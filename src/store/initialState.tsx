@@ -1,6 +1,6 @@
 import type { FavoriteState } from '@/interfaces';
 
-const initialFavorites: number[] = (() => {
+const initialFavorites: string[] = (() => {
   if (typeof window !== 'undefined') {  
     const stored = localStorage.getItem('favorites');
     

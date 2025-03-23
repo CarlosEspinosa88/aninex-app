@@ -1,33 +1,16 @@
 import { useState } from "react";
-import { ApolloError } from "@apollo/client";
-import { Anime } from "@/interfaces";
 import AnimeCard from "./AnimeCard";
 import AnimeModal from "./AnimeModal";
-
-type AnimesListProps = {
-  animes: Anime[] | [];
-  handleSearch: () => void;
-  handleLoadMore: () => void;
-  loading: boolean;
-  error: ApolloError | undefined;
-  pageInfo: {
-  total:  number
-  currentPage:  number
-  lastPage:   number
-  hasNextPage:  boolean
-  perPage:  number
-  };
-}
+import type { Anime, AnimesListProps } from "@/interfaces";
 
 export default function AnimesList({ 
   animes,
-  handleSearch,
-  handleLoadMore,
   loading,
   error,
   pageInfo,
+  handleSearch,
+  handleLoadMore,
 }: AnimesListProps) {
-
   const [selectedAnime, setSelectedAnime] = useState<Anime | null>(null);
 
   const handleCardClick = (anime: Anime ) => {
