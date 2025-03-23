@@ -1,7 +1,7 @@
 "use client";
 
 import AnimeModal from '@/modules/animes/components/AnimeModal';
-import FavoriteAnimeCard from '@/modules/favorites/FavoriteAnimeCard';
+import FavoriteAnimeCard from '@/modules/favorites/components/FavoriteAnimeCard';
 import { useModal } from '@/hooks/useModal';
 
 export default function Favorites() {
