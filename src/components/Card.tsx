@@ -2,7 +2,6 @@ import Image from "next/image";
 import Heart from '@/svg/Heart';
 import type { Anime } from "@/interfaces";
 
-
 type CardProps = {
   anime: Anime;
   title: string;
@@ -51,9 +50,9 @@ export default function Card({
           aria-label="toggle favorite"
         >
           {isFavorite ? (
-            <Heart width={18} height={18} stroke="red" fill="red"  />
+            <Heart width={18} height={18} stroke="red" fill="#FF4B77"  />
           ) : (
-            <Heart width={18} height={18} stroke="gray"  />
+            <Heart width={18} height={18} stroke="#FF4B77"  />
           )}
         </button>
       </div>
