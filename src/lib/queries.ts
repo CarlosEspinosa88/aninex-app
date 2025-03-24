@@ -66,7 +66,7 @@ export const GET_ANIMES = gql`
     }
 
     # 2) "Current Season"
-    currentSeason: Page(page: $page, perPage: $perPage) {
+    currentSeason: Page(page: $page, perPage: 5) {
       pageInfo {
         total
         currentPage
@@ -117,7 +117,7 @@ export const GET_ANIMES = gql`
     }
 
     # 3) "All Time"
-    allTime: Page(page: $page, perPage: $perPage) {
+    allTime: Page(page: $page, perPage: 5) {
       pageInfo {
         total
         currentPage
