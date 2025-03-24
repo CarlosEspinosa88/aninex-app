@@ -7,6 +7,7 @@ import { useGetAnimes } from '@/hooks/useGetAnimes';
 export default function Home() {
   const {
     data,
+    hasFilters,
     loading,
     error,
     search,
@@ -25,6 +26,8 @@ export default function Home() {
   } = useGetAnimes();
 
   const ANIMES_DATA = data?.Page?.media || [];
+  const ANIMES_ALL_POPULAR = data?.allTime?.media || [];
+  const ANIMES_THIS_SEASON_POPULAR = data?.currentSeason?.media || [];
   const PAGE_INFO = data?.Page?.pageInfo;
   
   return (
@@ -42,7 +45,8 @@ export default function Home() {
           setStatus={setStatus}
           setSeason={setSeason}
         />
-        <AnimesList 
+        <AnimesList
+          hasFilters={hasFilters}
           search={search}
           year={year}
           genre={genre}
@@ -51,6 +55,8 @@ export default function Home() {
           error={error}
           loading={loading}
           animes={ANIMES_DATA}
+          allPopular={ANIMES_ALL_POPULAR}
+          thisSeason={ANIMES_THIS_SEASON_POPULAR}
           pageInfo={PAGE_INFO}
           handlePreviousPage={handlePreviousPage}
           handleReset={handleReset}

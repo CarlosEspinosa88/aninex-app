@@ -1,5 +1,4 @@
-
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ANIMES } from '@/lib/queries';
 import { ANIME_TYPE, IS_ADULT, PER_PAGE } from '@/constants';
@@ -12,20 +11,37 @@ export const useGetAnimes = () => {
   const [status, setStatus] = useState<string>('');
   const [season, setSeason] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1);
-
   const debouncedSearch = useDebounce({ value: search, delay: 500 });
+  
+  const hasFilters = useMemo(() => {
+    return (
+      debouncedSearch !== '' ||
+      genre !== '' ||
+      year !== '' ||
+      status !== '' ||
+      season !== ''
+    );
+  }, [debouncedSearch, genre, year, status, season]);
 
   const {
     data,
     loading,
     error,
+    refetch,
     fetchMore,
-    refetch
   } = useQuery(GET_ANIMES, {
     variables: {
-      perPage: PER_PAGE,
       page: currentPage,
-    }
+      perPage: PER_PAGE,
+      isAdult: IS_ADULT,
+      type: ANIME_TYPE,
+      search: debouncedSearch || undefined,
+      genre_in: genre ? [genre] : undefined,
+      seasonYear: year ? parseInt(year) : undefined,
+      status: status || undefined,
+      season: season || undefined,
+    },
+    // skip: !hasFilters,
   });
 
   const handlePreviousPage = async () => {
@@ -38,21 +54,37 @@ export const useGetAnimes = () => {
       perPage: PER_PAGE,
       isAdult: IS_ADULT,
       type: ANIME_TYPE,
+      search: debouncedSearch || undefined,
+      genre_in: genre ? [genre] : undefined,
+      seasonYear: year ? parseInt(year) : undefined,
+      status: status || undefined,
+      season: season || undefined,
     });
   }
     
   const handleLoadMore = async () => {
-    if (data?.Page?.pageInfo?.hasNextPage) {
-      const nextPage = data.Page.pageInfo.currentPage + 1;
-      
-      await fetchMore({
-        variables: {
-          page: nextPage,
-        },
-        updateQuery: (prevResult, { fetchMoreResult }) => {
-          if (!fetchMoreResult) return prevResult;
-          
+    let pageInfo;
+
+    if (hasFilters) {
+      pageInfo = data?.Page?.pageInfo;
+    } else {
+      pageInfo = data?.allTime?.pageInfo;
+    }
+    
+    if (!pageInfo?.hasNextPage) return;
+    
+    const nextPage = pageInfo.currentPage + 1;
+
+    await fetchMore({
+      variables: {
+        page: nextPage,
+      },
+      updateQuery: (prevResult, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prevResult;
+
+        if (hasFilters) {
           return {
+            ...prevResult,
             Page: {
               __typename: 'Page',
               pageInfo: fetchMoreResult.Page.pageInfo,
@@ -61,54 +93,54 @@ export const useGetAnimes = () => {
                 ...fetchMoreResult.Page.media,
               ],
             },
+            currentSeason: { ...prevResult.currentSeason },
+            allTime: { ...prevResult.allTime },
           };
-        },
-      });
+        } else {
+          return {
+            ...prevResult,
+            allTime: {
+              __typename: 'Page',
+              pageInfo: fetchMoreResult.allTime.pageInfo,
+              media: [
+                ...prevResult.allTime.media,
+                ...fetchMoreResult.allTime.media,
+              ],
+            },
+            Page: { ...prevResult.Page },
+            currentSeason: { ...prevResult.currentSeason },
+          };
+        }
+      },
+    });
 
-      setCurrentPage(nextPage);
-    }
-  };
+    setCurrentPage(nextPage);
+};
 
 
-  const handleReset = () => {
+  const handleReset = async () => {
     setSearch('');
     setGenre('');
     setYear('');
     setStatus('');
     setSeason('');
     setCurrentPage(1);
-    refetch({
+    
+    await refetch({
       page: 1,
       perPage: PER_PAGE,
       isAdult: IS_ADULT,
       type: ANIME_TYPE,
+      search: undefined,
+      genre_in: undefined,
+      seasonYear: undefined,
+      status: undefined,
+      season: undefined,
     });
   }
 
-  useEffect(() => {
-    setCurrentPage(1);
-    refetch({
-      page: 1,
-      perPage: PER_PAGE,
-      isAdult: IS_ADULT,
-      type: ANIME_TYPE,
-      search: debouncedSearch || undefined,
-      genre_in: genre ? [genre] : undefined,
-      seasonYear: year ? parseInt(year) : undefined,
-      status: status || undefined,
-      season: season || undefined,
-    });
-
-  }, [  
-    debouncedSearch,
-    genre,
-    year,
-    status,
-    season,
-    refetch
-  ]);
-
   return {
+    hasFilters,
     data,
     loading,
     error,

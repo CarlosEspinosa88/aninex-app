@@ -45,12 +45,15 @@ export interface FavoriteState {
 }
 
 export type AnimesListProps = {
+  hasFilters: boolean;
   year: string;
   genre: string;
   status: string;
   season: string
   search: string;
   animes: Anime[] | [];
+  allPopular: Anime[] | [];
+  thisSeason: Anime[] | [];
   loading: boolean;
   error: ApolloError | undefined;
   pageInfo: {
@@ -90,7 +93,9 @@ export type AnimeCardProps = {
   status: string;
   season: string;
   search: string;
-  animes: Anime[] | [];
+  animes: Anime[] | []
+  allPopular: Anime[] | [];
+  thisSeason: Anime[] | [];
   loading: boolean;
   pageInfo: {
     total:  number
@@ -184,5 +189,21 @@ export type FiltersProps = {
 }
 
 export type FavoriteAnimeCardProps = {
+  handleCardClick: (anime: Anime) => void;
+}
+
+export type AnimeCardAllTimeProps = {
+  allPopular: Anime[];
+  favoriteAnimes: Anime[];
+  selectedAnime: Anime | null;
+  handleToggleFavorite: ({ anime, isFavorite}: { anime: Anime; isFavorite: boolean }) => void;
+  handleCardClick: (anime: Anime) => void;
+}
+
+export type AnimeCardThisSeasonProps = {
+  thisSeason: Anime[];
+  favoriteAnimes: Anime[];
+  selectedAnime: Anime | null;
+  handleToggleFavorite: ({ anime, isFavorite}: { anime: Anime; isFavorite: boolean }) => void;
   handleCardClick: (anime: Anime) => void;
 }
