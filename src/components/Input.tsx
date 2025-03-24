@@ -25,7 +25,7 @@ export default function Input({
   return (
     <div>
       <div className="mt-2">
-        <label htmlFor={id} className="block text-[#8F8F8F] text-[16px] font-bold">
+        <label htmlFor={id} className="block text-[#8F8F8F] text-[16px] font-bold font-(family-name:--font-montserrat)">
           {label}
         </label>
         <input
@@ -42,6 +42,7 @@ export default function Input({
             shadow-sm ring-1 ring-inset ring-[#D8D8D8] placeholder:text-gray-400 
             focus:ring-2 focus:ring-inset focus:ring-[#0D7377] focus-visible:outline-[#0D7377] 
             sm:text-[1rem] p-[18px]
+            font-(family-name:--font-montserrat)
             ${className}
           `}
           {...props}  

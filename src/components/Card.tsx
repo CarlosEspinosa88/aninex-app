@@ -41,7 +41,7 @@ export default function Card({
           shadow-[#00DECC]/80 cursor-pointer"
         onClick={() => handleCardClick?.(anime)}
       />
-      <p className="mt-2 text-[#8F8F8F] text-base font-semibold w-[200px] mb-3 leading-[1.2] overflow-hidden line-clamp-1">
+      <p className="mt-2 text-[#8F8F8F] text-base font-semibold w-[200px] mb-3 leading-[1.2] overflow-hidden line-clamp-1 font-(family-name:--font-montserrat)">
         {title}
       </p>
       <div className="relative">

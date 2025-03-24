@@ -1,5 +1,7 @@
 import AnimeCard from "./AnimeCard";
 import AnimeModal from "./AnimeModal";
+import ErrorMessage from "@/components/ErrorMessage";
+import GenericLoading from "@/components/GenericLoading";
 import { useModal } from "@/hooks/useModal";
 import type { AnimesListProps } from "@/interfaces";
 
@@ -21,7 +23,7 @@ export default function AnimesList({
 
   return (
     <div>
-      {loading ? <div>Loading...</div> : (
+      {loading ? <GenericLoading /> : (
         <>
           <AnimeCard 
             animes={animes}
@@ -38,7 +40,7 @@ export default function AnimesList({
           />
         </>
         )}
-      {error && <div>Error: {error.message}</div>}
+      {error && <ErrorMessage error={error} />}
     </div>
   )
 }
