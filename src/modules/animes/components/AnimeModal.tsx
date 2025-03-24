@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Modal from '@/components/Modal'
 import type { Anime } from '@/interfaces';
+import Heart from '@/svg/Heart';
+import { useGetFavorites } from '@/hooks/useGetFavorites';
 
 type AnimeModalProps = {
   selectedAnime: Anime | null;
@@ -11,6 +13,9 @@ export default function AnimeModal({
   selectedAnime,
   closeModal,
 }: AnimeModalProps) {
+  const { favoriteAnimes, handleToggleFavorite } = useGetFavorites();
+  const isFavorite = favoriteAnimes.some((someAnime) => someAnime.id === selectedAnime?.id);
+
   return (
     <>
       {selectedAnime && (
@@ -36,6 +41,21 @@ export default function AnimeModal({
                   </h1>
                 </div>
 
+                {/* favorite */}
+                <div className="relative">
+                  <button
+                    onClick={() => handleToggleFavorite({anime: selectedAnime, isFavorite  })}
+                    className="absolute bottom-[40px] right-2"
+                    aria-label="toggle favorite"
+                  >
+                    {isFavorite ? (
+                      <Heart width={30} height={30} stroke="red" fill="#FF4B77"  />
+                    ) : (
+                      <Heart width={30} height={30} stroke="#FF4B77"  />
+                    )}
+                  </button>
+                </div>
+                
                 {/* info */}
                 <div className="flex flex-row gap-10">
                   <div>

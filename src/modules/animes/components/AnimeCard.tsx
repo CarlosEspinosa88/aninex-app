@@ -41,9 +41,6 @@ export default function AnimeCard({
   handleReset,
 }: AnimeCardProps) {
   const { favoriteAnimes, handleToggleFavorite } = useGetFavorites();
-
-  console.log('animes', handleReset)
-
   return (
     <>
       <LabelSearch 
