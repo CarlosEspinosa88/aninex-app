@@ -1,12 +1,4 @@
-type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'warning';
-
-type ButtonProps = {
-  label: React.ReactNode;
-  onClick?: () => void;
-  variant?: ButtonVariant;
-  className?: string;
-  disabled?: boolean;
-};
+import { ButtonProps, ButtonVariant } from "@/interfaces";
 
 export default function Button({
   label,

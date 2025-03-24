@@ -1,10 +1,5 @@
-"use client";
 import Close from '@/svg/Close';
-
-type ModalProps = {
-  children: React.ReactNode;
-  onClose: () => void;
-};
+import { ModalProps } from '@/interfaces';
 
 export default function Modal({ children, onClose }: ModalProps) {
   return (

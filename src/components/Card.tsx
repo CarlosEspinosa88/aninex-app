@@ -1,16 +1,6 @@
 import Image from "next/image";
 import Heart from '@/svg/Heart';
-import type { Anime } from "@/interfaces";
-
-type CardProps = {
-  anime: Anime;
-  title: string;
-  imageUrl: string;
-  isFavorite?: boolean;
-  className?: string;
-  onToggleFavorite?: () => void;
-  handleCardClick?: (anime: Anime) => void;
-};
+import type { CardProps } from "@/interfaces";
 
 export default function Card({
   anime,

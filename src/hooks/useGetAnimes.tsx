@@ -7,7 +7,6 @@ import { useDebounce } from './useDebounce';
 
 export const useGetAnimes = () => {
   const [search, setSearch] = useState<string>('');
-
   const [genre, setGenre] = useState<string>('');
   const [year, setYear] = useState<string>('');
   const [status, setStatus] = useState<string>('');

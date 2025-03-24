@@ -1,14 +1,4 @@
-type InputProps = {
-  id?: string;
-  value: string;
-  name: string;
-  label: string;
-  type?: string;
-  placeholder?: string;
-  className?: string;
-  onBlur: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { InputProps } from "@/interfaces";
 
 export default function Input({
   id,

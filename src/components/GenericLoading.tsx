@@ -1,6 +1,7 @@
+import { ReactNode} from 'react';
 import SvgLoading from '@/svg/Loading';
 
-export default function GenericLoading({ children }: { children?: React.ReactNode }) {
+export default function GenericLoading({ children }: { children?: ReactNode }) {
   return (
     <div className="mt-6 flex flex-col items-center gap-5 h-[60vh] justify-center">
       <div>

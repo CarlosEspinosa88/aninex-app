@@ -1,19 +1,7 @@
 import Input from "@/components/Input";
 import InputSelect from "@/components/InputSelect";
 import { GENRES_CATEGORIES, SEASON_CATEGORIES, STATUS_CATEGORIES, YEARS_CATEGORIES } from "@/constants";
-
-type FiltersProps = {
-  search: string;
-  genre: string;
-  year: string;
-  status: string;
-  season: string;
-  setSearch: (e: string) => void;
-  setGenre: (e: string) => void;
-  setYear: (e: string) => void;
-  setStatus: (e: string) => void;
-  setSeason: (e: string) => void;
-}
+import { FiltersProps } from "@/interfaces";
 
 export default function Filters({
   search, 

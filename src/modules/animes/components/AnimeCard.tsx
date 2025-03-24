@@ -1,30 +1,9 @@
 import Card from '@/components/Card';
-import type { Anime } from '@/interfaces';
-import { useGetFavorites } from '@/hooks/useGetFavorites';
 import ButtonPagination from './ButtonPagination';
 import NoResult from './NoResult';
 import LabelSearch from './LabelSearch';
-
-type AnimeCardProps = {
-  year: string;
-  genre: string;
-  status: string;
-  season: string;
-  search: string;
-  animes: Anime[] | [];
-  loading: boolean;
-  pageInfo: {
-    total:  number
-    currentPage:  number
-    lastPage:   number
-    hasNextPage:  boolean
-    perPage:  number
-  };
-  handleLoadMore: () => void;
-  handlePreviousPage: () => void;
-  handleReset: () => void;
-  handleCardClick: (anime: Anime) => void;
-}
+import { useGetFavorites } from '@/hooks/useGetFavorites';
+import type { AnimeCardProps } from '@/interfaces';
 
 export default function AnimeCard({
   year,

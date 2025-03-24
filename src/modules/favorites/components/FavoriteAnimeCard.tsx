@@ -1,18 +1,16 @@
 "use client";
 
 import Card from '@/components/Card';
+import NoResultFavorites from './NoResultFavorites';
 import { useGetFavorites } from '@/hooks/useGetFavorites';
-import { Anime } from '@/interfaces';
+import { FavoriteAnimeCardProps } from '@/interfaces';
 
-type FavoriteAnimeCardProps = {
-  handleCardClick: (anime: Anime) => void;
-}
 
 export default function FavoriteAnimeCard({ handleCardClick }: FavoriteAnimeCardProps) {
   const { favoriteAnimes, handleRemoveFavorite } = useGetFavorites();
 
   if (favoriteAnimes.length === 0) {
-    return <p className="p-4">{`There're not favorites yet`}</p>;
+    return <NoResultFavorites />
   }
 
   return (
