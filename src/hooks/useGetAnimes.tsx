@@ -31,29 +31,15 @@ export const useGetAnimes = () => {
 
   const handlePreviousPage = async () => {
     const previousPage = data.Page.pageInfo.currentPage - 1;
-    
-    await fetchMore({
-      variables: {
-        page: previousPage,
-      },
-      updateQuery: (prevResult, { fetchMoreResult }) => {
-        if (!fetchMoreResult) return prevResult;
-        
-        return {
-          Page: {
-            __typename: 'Page',
-            pageInfo: fetchMoreResult.Page.pageInfo,
-            media: [
-              ...prevResult.Page.media,
-              ...fetchMoreResult.Page.media,
-            ],
-          },
-        };
-      },
-    });
-
+    if (previousPage < 1) return;
+  
     setCurrentPage(previousPage);
-    
+    refetch({ 
+      page: previousPage,
+      perPage: PER_PAGE,
+      isAdult: IS_ADULT,
+      type: ANIME_TYPE,
+    });
   }
     
   const handleLoadMore = async () => {
