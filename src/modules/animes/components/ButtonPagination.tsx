@@ -1,15 +1,5 @@
 import Button from '@/components/Button';
-import React from 'react'
-
-type ButtonPaginationProps = {
-  pageInfo: {
-    hasNextPage: boolean;
-    currentPage: number;
-  },
-  loading: boolean;
-  handleLoadMore: () => void; 
-  handlePreviousPage: () => void;
-}
+import { ButtonPaginationProps } from '@/interfaces';
 
 export default function ButtonPagination({ 
   pageInfo, 

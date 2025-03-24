@@ -1,13 +1,8 @@
 import Image from 'next/image';
 import Modal from '@/components/Modal'
-import type { Anime } from '@/interfaces';
 import Heart from '@/svg/Heart';
 import { useGetFavorites } from '@/hooks/useGetFavorites';
-
-type AnimeModalProps = {
-  selectedAnime: Anime | null;
-  closeModal: () => void;
-};
+import type { AnimeModalProps } from '@/interfaces';
 
 export default function AnimeModal({
   selectedAnime,

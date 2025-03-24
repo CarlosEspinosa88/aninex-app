@@ -1,10 +1,4 @@
-"use client"
-
-import { ApolloError } from '@apollo/client';
-
-type ErrorMessageProps = {
-  error: ApolloError;
-};
+import { ErrorMessageProps } from '@/interfaces';
 
 export default function ErrorMessage({ error }: ErrorMessageProps) {
   const graphQLErrors = error?.graphQLErrors;

@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useDebounceProps } from '@/interfaces';
 
-type useDebounceProps = {
-  value: string;
-  delay?: number;
-}
-
-export function useDebounce({ value, delay = 400}: useDebounceProps) {
+export const useDebounce = ({ value, delay = 400}: useDebounceProps) => {
   const [debouncedValue, setDebouncedValue] = useState<string>(value);
 
   useEffect(() => {

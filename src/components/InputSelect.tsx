@@ -1,13 +1,5 @@
 import Caret from '@/svg/Caret';
-
-type InputSelectProps = {
-  id: string;
-  name?: string;
-  label: string;
-  value: string | number;
-  options: Array<string | number>;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-}
+import { InputSelectProps } from '@/interfaces';
 
 export default function InputSelect({
   id,

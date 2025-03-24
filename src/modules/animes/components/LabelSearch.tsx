@@ -1,14 +1,5 @@
 import Close from '@/svg/Close';
-import React from 'react'
-
-type LabelSearchProps = {
-  search: string;
-  year: string;
-  genre: string;
-  status: string;
-  season: string;
-  handleReset: () => void;
-}
+import { LabelSearchProps } from '@/interfaces';
 
 export default function LabelSearch({ 
   search, 
@@ -26,11 +17,11 @@ export default function LabelSearch({
             Result For: 
           </h3>
           <p className="text-[#8F8F8F] text-md">
-            {search && `Search: ${search}`}
-            {year && `| Year: ${year}` }
-            {genre && `| Genre: ${genre}`}
-            {status && `| Status: ${status}`}
-            {season && `| Season: ${season}`}
+            {search && `Search: ${search} | `}
+            {year && `Year: ${year} | `}
+            {genre && `Genre: ${genre} | `}
+            {status && `Status: ${status} |`}
+            {season && `Season: ${season} | `}
           </p>
           <div className="relative">
             <button onClick={handleReset} className="text-white hover:text-gray-800  bg-[#0D7377]/80 p-2 rounded-full cursor-pointer">

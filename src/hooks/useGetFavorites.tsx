@@ -1,13 +1,10 @@
-import { Anime } from '@/interfaces';
-import { useAppDispatch } from './useAppDispatch';
-import { addFavoriteAnimes, removeFavoriteAnime } from '@/store/actions';
-import { selectFavoriteAnimes } from "@/store/selectFavorites";
 import { useAppSelector } from "@/hooks/useAppDispatch";
+import { selectFavoriteAnimes } from "@/store/selectFavorites";
+import { addFavoriteAnimes, removeFavoriteAnime } from '@/store/actions';
+import { useAppDispatch } from './useAppDispatch';
+import { Anime, handleToggleFavoriteProps } from '@/interfaces';
 
-type handleToggleFavoriteProps = {
-  anime: Anime;
-  isFavorite: boolean;
-}
+
 
 export const useGetFavorites = () => {
   const dispatch = useAppDispatch();
