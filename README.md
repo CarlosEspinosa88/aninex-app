@@ -70,8 +70,6 @@ cd aninex-app
 npm install
 # or
 yarn install
-Scripts & Usage
-Inside the project directory, you can run the following scripts:
 ```
 
 ## Scripts & Usage
@@ -126,11 +124,19 @@ An example of the main folders and files:
 aninex-app/
 ├─ app/                  # Next.js 15 App Router (if using app folder)
 │  ├─ layout.tsx         # Root layout
-│  ├─ page.tsx           # Index page
+│  ├─ page.tsx           # Index page (List of Animes)
+│  ├─ favorites/         # Folder of Favorites page
 │  └─ ...other routes...
 ├─ components/           # Reusable React components (AnimeCard, Modal, etc.)
 ├─ hooks/                # Custom React hooks (useGetAnimes, useModal, etc.)
 ├─ lib/                  # Apollo client configuration, GraphQL queries, etc.
+├─ interfaces/           # Types of Typescript
+├─ modules/              # General modules to separate logic
+├─ store/                # Redux configuration
+├─ styles/               # Global styles
+├─ svg/                  # Icons in SVG
+├─ fonts/                # Font to use inside the project
+├─ constants/            # Static values
 ├─ public/               # Static assets
 ├─ .eslintrc.js          # ESLint configuration
 ├─ tailwind.config.js    # TailwindCSS configuration
