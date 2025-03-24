@@ -4,11 +4,9 @@ import type { AnimeCardThisSeasonProps } from '@/interfaces';
 export default function AnimeCardThisSeason({ 
   thisSeason, 
   favoriteAnimes,
-  selectedAnime, 
   handleToggleFavorite, 
   handleCardClick 
 }: AnimeCardThisSeasonProps) {
-  const isFavorite = favoriteAnimes.some((someAnime) => someAnime.id === selectedAnime?.id);
   
   return (
     <div>
@@ -17,6 +15,7 @@ export default function AnimeCardThisSeason({
       </p>
       <div className="flex flex-row flex-wrap gap-[35px]">
         {thisSeason?.map((anime) => {
+          const isFavorite = favoriteAnimes.some((someAnime) => someAnime.id === anime?.id);
           return (
             <Card
               key={anime.id}
