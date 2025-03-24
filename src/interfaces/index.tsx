@@ -195,7 +195,6 @@ export type FavoriteAnimeCardProps = {
 export type AnimeCardAllTimeProps = {
   allPopular: Anime[];
   favoriteAnimes: Anime[];
-  selectedAnime: Anime | null;
   handleToggleFavorite: ({ anime, isFavorite}: { anime: Anime; isFavorite: boolean }) => void;
   handleCardClick: (anime: Anime) => void;
 }
@@ -203,7 +202,6 @@ export type AnimeCardAllTimeProps = {
 export type AnimeCardThisSeasonProps = {
   thisSeason: Anime[];
   favoriteAnimes: Anime[];
-  selectedAnime: Anime | null;
   handleToggleFavorite: ({ anime, isFavorite}: { anime: Anime; isFavorite: boolean }) => void;
   handleCardClick: (anime: Anime) => void;
 }

@@ -42,14 +42,12 @@ export default function AnimesList({
             <>
               <AnimeCardThisSeason
                 thisSeason={thisSeason}
-                selectedAnime={selectedAnime}
                 favoriteAnimes={favoriteAnimes}
                 handleCardClick={handleCardClick} 
                 handleToggleFavorite={handleToggleFavorite}
               />
               <AnimeCardAllTime
                 allPopular={allPopular}
-                selectedAnime={selectedAnime}
                 favoriteAnimes={favoriteAnimes}
                 handleCardClick={handleCardClick} 
                 handleToggleFavorite={handleToggleFavorite}

@@ -5,12 +5,9 @@ import type { AnimeCardAllTimeProps } from '@/interfaces';
 export default function AnimeCardAllTime({ 
   allPopular, 
   favoriteAnimes,
-  selectedAnime, 
   handleToggleFavorite, 
   handleCardClick 
 }: AnimeCardAllTimeProps) {
-  const isFavorite = favoriteAnimes.some((someAnime) => someAnime.id === selectedAnime?.id);
-  
   return (
     <div>
       <p className="block text-[#8F8F8F] text-[16px] font-bold font-(family-name:--font-montserrat) pt-15 pb-5">
@@ -18,6 +15,7 @@ export default function AnimeCardAllTime({
       </p>
       <div className="flex flex-row flex-wrap gap-[35px]">
         {allPopular?.map((anime) => {
+          const isFavorite = favoriteAnimes.some((someAnime) => someAnime.id === anime?.id);
           return (
             <Card
               key={anime.id}
