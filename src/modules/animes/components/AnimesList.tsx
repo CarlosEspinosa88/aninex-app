@@ -2,16 +2,22 @@ import AnimeCard from "./AnimeCard";
 import AnimeModal from "./AnimeModal";
 import ErrorMessage from "@/components/ErrorMessage";
 import GenericLoading from "@/components/GenericLoading";
+import AnimeCardAllTime from "./AnimeCardAllTime";
+import AnimeCardThisSeason from "./AnimeCardThisSeason";
 import { useModal } from "@/hooks/useModal";
+import { useGetFavorites } from "@/hooks/useGetFavorites";
 import type { AnimesListProps } from "@/interfaces";
 
 export default function AnimesList({
+  hasFilters,
   year,
   genre,
   status,
   season,
   search,
   animes,
+  allPopular,
+  thisSeason,
   loading,
   error,
   pageInfo,
@@ -26,24 +32,47 @@ export default function AnimesList({
     handleCloseModal 
   } = useModal();
 
+  const { favoriteAnimes, handleToggleFavorite } = useGetFavorites();
+
   return (
     <div>
       {loading ? <GenericLoading /> : (
         <>
-          <AnimeCard
-            year={year}
-            genre={genre} 
-            status={status}
-            season={season}
-            search={search}
-            animes={animes}
-            loading={loading}
-            pageInfo={pageInfo}
-            handleCardClick={handleCardClick}
-            handleLoadMore={handleLoadMore}
-            handlePreviousPage={handlePreviousPage}
-            handleReset={handleReset}
-          />
+          {!hasFilters ? (
+            <>
+              <AnimeCardThisSeason
+                thisSeason={thisSeason}
+                selectedAnime={selectedAnime}
+                favoriteAnimes={favoriteAnimes}
+                handleCardClick={handleCardClick} 
+                handleToggleFavorite={handleToggleFavorite}
+              />
+              <AnimeCardAllTime
+                allPopular={allPopular}
+                selectedAnime={selectedAnime}
+                favoriteAnimes={favoriteAnimes}
+                handleCardClick={handleCardClick} 
+                handleToggleFavorite={handleToggleFavorite}
+              />
+            </>
+          ) :(
+            <AnimeCard
+              year={year}
+              genre={genre} 
+              status={status}
+              season={season}
+              search={search}
+              animes={animes}
+              allPopular={allPopular}
+              thisSeason={thisSeason}
+              loading={loading}
+              pageInfo={pageInfo}
+              handleCardClick={handleCardClick}
+              handleLoadMore={handleLoadMore}
+              handlePreviousPage={handlePreviousPage}
+              handleReset={handleReset}
+            />
+          )}
           <AnimeModal
             selectedAnime={selectedAnime}
             closeModal={handleCloseModal}

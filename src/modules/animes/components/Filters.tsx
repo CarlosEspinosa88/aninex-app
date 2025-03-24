@@ -1,7 +1,12 @@
 import Input from "@/components/Input";
 import InputSelect from "@/components/InputSelect";
-import { GENRES_CATEGORIES, SEASON_CATEGORIES, STATUS_CATEGORIES, YEARS_CATEGORIES } from "@/constants";
-import { FiltersProps } from "@/interfaces";
+import type { FiltersProps } from "@/interfaces";
+import {
+  GENRES_CATEGORIES, 
+  SEASON_CATEGORIES, 
+  STATUS_CATEGORIES, 
+  YEARS_CATEGORIES
+} from "@/constants";
 
 export default function Filters({
   search, 

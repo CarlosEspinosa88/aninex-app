@@ -1,3 +1,5 @@
+'use client';
+
 import Card from '@/components/Card';
 import ButtonPagination from './ButtonPagination';
 import NoResult from './NoResult';
