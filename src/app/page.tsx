@@ -31,7 +31,7 @@ export default function Home() {
   const PAGE_INFO = data?.Page?.pageInfo;
   
   return (
-    <div className='max-w-[1238px] mx-auto h-[100vh]'>
+    <div className='max-w-[1238px] mx-auto mb-10'>
       <main>
         <Filters 
           year={year}
