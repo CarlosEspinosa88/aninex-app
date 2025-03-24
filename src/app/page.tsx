@@ -43,6 +43,11 @@ export default function Home() {
           setSeason={setSeason}
         />
         <AnimesList 
+          search={search}
+          year={year}
+          genre={genre}
+          status={status}
+          season={season}
           error={error}
           loading={loading}
           animes={ANIMES_DATA}

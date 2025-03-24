@@ -5,7 +5,12 @@ import GenericLoading from "@/components/GenericLoading";
 import { useModal } from "@/hooks/useModal";
 import type { AnimesListProps } from "@/interfaces";
 
-export default function AnimesList({ 
+export default function AnimesList({
+  year,
+  genre,
+  status,
+  season,
+  search,
   animes,
   loading,
   error,
@@ -25,7 +30,12 @@ export default function AnimesList({
     <div>
       {loading ? <GenericLoading /> : (
         <>
-          <AnimeCard 
+          <AnimeCard
+            year={year}
+            genre={genre} 
+            status={status}
+            season={season}
+            search={search}
             animes={animes}
             loading={loading}
             pageInfo={pageInfo}

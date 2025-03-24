@@ -42,6 +42,11 @@ export interface FavoriteState {
 }
 
 export type AnimesListProps = {
+  year: string;
+  genre: string;
+  status: string;
+  season: string
+  search: string;
   animes: Anime[] | [];
   loading: boolean;
   error: ApolloError | undefined;

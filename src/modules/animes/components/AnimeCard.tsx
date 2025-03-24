@@ -2,8 +2,15 @@ import Card from '@/components/Card';
 import type { Anime } from '@/interfaces';
 import { useGetFavorites } from '@/hooks/useGetFavorites';
 import ButtonPagination from './ButtonPagination';
+import NoResult from './NoResult';
+import LabelSearch from './LabelSearch';
 
 type AnimeCardProps = {
+  year: string;
+  genre: string;
+  status: string;
+  season: string;
+  search: string;
   animes: Anime[] | [];
   loading: boolean;
   pageInfo: {
@@ -20,6 +27,11 @@ type AnimeCardProps = {
 }
 
 export default function AnimeCard({
+  year,
+  genre,
+  status,
+  season,
+  search,
   animes,
   loading,
   pageInfo,
@@ -28,17 +40,26 @@ export default function AnimeCard({
   handlePreviousPage,
   handleReset,
 }: AnimeCardProps) {
-  const { favoriteAnimes, handleToggleFavorite } = useGetFavorites()
+  const { favoriteAnimes, handleToggleFavorite } = useGetFavorites();
 
   console.log('animes', handleReset)
 
   return (
     <>
+      <LabelSearch 
+        search={search}
+        season={season}
+        year={year}
+        genre={genre}
+        status={status}
+        handleReset={handleReset}
+      />
       {animes.length > 0 ? (
         <>
-          <div className="flex flex-row flex-wrap gap-[35px] pt-10 pb-10">
+          <div className="flex flex-row flex-wrap gap-[35px] pt-15 pb-10">
             {animes?.map((anime) => {
               const isFavorite = favoriteAnimes.some((someAnime) => someAnime.id === anime.id);
+              
               return (
                 <Card
                   key={anime.id}
@@ -59,9 +80,7 @@ export default function AnimeCard({
             handlePreviousPage={handlePreviousPage}
           />
         </>
-      ) : (
-        <div>No Results for your filters</div>
-      )}
+      ) : <NoResult />}
     </>
   )
 }
