@@ -20,6 +20,8 @@ export default function Home() {
     setStatus,
     setSeason,
     handleLoadMore,
+    handlePreviousPage,
+    handleReset,
   } = useGetAnimes();
 
   const ANIMES_DATA = data?.Page?.media || [];
@@ -45,6 +47,8 @@ export default function Home() {
           loading={loading}
           animes={ANIMES_DATA}
           pageInfo={PAGE_INFO}
+          handlePreviousPage={handlePreviousPage}
+          handleReset={handleReset}
           handleLoadMore={handleLoadMore}
         />
       </main>

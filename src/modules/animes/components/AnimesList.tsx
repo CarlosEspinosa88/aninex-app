@@ -9,6 +9,8 @@ export default function AnimesList({
   error,
   pageInfo,
   handleLoadMore,
+  handlePreviousPage,
+  handleReset,
 }: AnimesListProps) {
 
   const {
@@ -25,8 +27,10 @@ export default function AnimesList({
             animes={animes}
             loading={loading}
             pageInfo={pageInfo}
-            handleLoadMore={handleLoadMore}
             handleCardClick={handleCardClick}
+            handleLoadMore={handleLoadMore}
+            handlePreviousPage={handlePreviousPage}
+            handleReset={handleReset}
           />
           <AnimeModal
             selectedAnime={selectedAnime}

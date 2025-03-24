@@ -53,6 +53,8 @@ export type AnimesListProps = {
     perPage: number;
   };
   handleLoadMore: () => void;
+  handlePreviousPage: () => void;
+  handleReset: () => void;
 }
 
 export type RootState = ReturnType<typeof store.getState>;

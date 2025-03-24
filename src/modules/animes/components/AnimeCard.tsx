@@ -1,7 +1,7 @@
-import Button from '@/components/Button';
 import Card from '@/components/Card';
 import type { Anime } from '@/interfaces';
 import { useGetFavorites } from '@/hooks/useGetFavorites';
+import ButtonPagination from './ButtonPagination';
 
 type AnimeCardProps = {
   animes: Anime[] | [];
@@ -14,6 +14,8 @@ type AnimeCardProps = {
     perPage:  number
   };
   handleLoadMore: () => void;
+  handlePreviousPage: () => void;
+  handleReset: () => void;
   handleCardClick: (anime: Anime) => void;
 }
 
@@ -22,9 +24,13 @@ export default function AnimeCard({
   loading,
   pageInfo,
   handleLoadMore,
-  handleCardClick
+  handleCardClick,
+  handlePreviousPage,
+  handleReset,
 }: AnimeCardProps) {
   const { favoriteAnimes, handleToggleFavorite } = useGetFavorites()
+
+  console.log('animes', handleReset)
 
   return (
     <>
@@ -46,15 +52,12 @@ export default function AnimeCard({
               )
             })}
           </div>
-          {pageInfo?.hasNextPage && (
-            <div className='mt-[1rem]'>
-              <Button 
-                disabled={loading} 
-                onClick={handleLoadMore} 
-                label={loading ? 'Loading...' : 'Load more'} 
-              />  
-            </div>
-          )}
+          <ButtonPagination 
+            pageInfo={pageInfo}
+            loading={loading}
+            handleLoadMore={handleLoadMore}
+            handlePreviousPage={handlePreviousPage}
+          />
         </>
       ) : (
         <div>No Results for your filters</div>

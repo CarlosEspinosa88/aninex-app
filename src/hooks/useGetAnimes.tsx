@@ -30,31 +30,30 @@ export const useGetAnimes = () => {
   });
 
   const handlePreviousPage = async () => {
-    if (data?.Page?.pageInfo?.hasPreviousPage) {
-      const previousPage = data.Page.pageInfo.currentPage - 1;
-      
-      await fetchMore({
-        variables: {
-          page: previousPage,
-        },
-        updateQuery: (prevResult, { fetchMoreResult }) => {
-          if (!fetchMoreResult) return prevResult;
-          
-          return {
-            Page: {
-              __typename: 'Page',
-              pageInfo: fetchMoreResult.Page.pageInfo,
-              media: [
-                ...prevResult.Page.media,
-                ...fetchMoreResult.Page.media,
-              ],
-            },
-          };
-        },
-      });
+    const previousPage = data.Page.pageInfo.currentPage - 1;
+    
+    await fetchMore({
+      variables: {
+        page: previousPage,
+      },
+      updateQuery: (prevResult, { fetchMoreResult }) => {
+        if (!fetchMoreResult) return prevResult;
+        
+        return {
+          Page: {
+            __typename: 'Page',
+            pageInfo: fetchMoreResult.Page.pageInfo,
+            media: [
+              ...prevResult.Page.media,
+              ...fetchMoreResult.Page.media,
+            ],
+          },
+        };
+      },
+    });
 
-      setCurrentPage(previousPage);
-    }
+    setCurrentPage(previousPage);
+    
   }
     
   const handleLoadMore = async () => {

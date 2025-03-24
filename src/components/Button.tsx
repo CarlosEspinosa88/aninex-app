@@ -1,4 +1,4 @@
-type ButtonVariant = 'primary' | 'secondary' | 'danger';
+type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'warning';
 
 type ButtonProps = {
   label: React.ReactNode;
@@ -18,7 +18,7 @@ export default function Button({
   const baseClasses = `
     inline-flex items-center justify-center
     px-4 py-2
-    rounded-md
+    rounded-xl
     font-semibold
     focus:outline-none focus:ring-2 focus:ring-offset-2
     transition-colors
@@ -27,18 +27,19 @@ export default function Button({
   const variantClasses: Record<ButtonVariant, string> = {
     primary: `
       bg-[#0D7377] text-white
-      hover:bg-blue-700
-      focus:ring-blue-500
+      hover:bg-[#094446]
     `,
     secondary: `
-      bg-gray-200 text-gray-800
-      hover:bg-gray-300
-      focus:ring-gray-400
+      bg-[#ff567f] text-gray-800
+      hover:bg-[#9d2f4a]
     `,
     danger: `
-      bg-red-600 text-white
-      hover:bg-red-700
-      focus:ring-red-500
+      bg-[#860101] text-white
+      hover:bg-[#9d2626]
+    `,
+    warning: `
+      bg-[#eac700] text-white
+      hover:bg-[#b39800]
     `,
   };
 
