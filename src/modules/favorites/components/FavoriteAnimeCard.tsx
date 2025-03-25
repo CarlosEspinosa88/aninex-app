@@ -4,12 +4,23 @@ import Card from '@/components/Card';
 import NoResultFavorites from './NoResultFavorites';
 import { useGetFavorites } from '@/hooks/useGetFavorites';
 import { FavoriteAnimeCardProps } from '@/interfaces';
+import { useEffect, useState } from 'react';
+import Loading from '@/components/GenericLoading';
 
 
 export default function FavoriteAnimeCard({ handleCardClick }: FavoriteAnimeCardProps) {
+  const [loaded, setLoaded] = useState(false);
   const { favoriteAnimes, handleRemoveFavorite } = useGetFavorites();
+  
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
-  if (favoriteAnimes.length === 0) {
+  if (!loaded) {
+    return <Loading />
+  }
+
+  if (favoriteAnimes?.length === 0) {
     return <NoResultFavorites />
   }
 
