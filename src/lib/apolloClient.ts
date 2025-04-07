@@ -10,7 +10,7 @@ const link = new HttpLink({
       'Accept': 'application/json',
       'Access-Control-Allow-Origin': '*',
       }
-  },
+  }
 });
 
 const client = new ApolloClient({
