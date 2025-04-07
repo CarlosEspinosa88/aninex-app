@@ -11,7 +11,7 @@ export type Anime = {
   status: string;
   genres: string[];
   episodes: number;
-  season: number;
+  season: string;
   averageScore: number;
   startDate: {
     year: number;
